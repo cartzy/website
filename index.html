@@ -1,0 +1,2735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OLPMPC – Our Lady of Peace Multipurpose Cooperative</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --blue: #1A3C8F;
+  --blue-mid: #1E4DAA;
+  --blue-light: #2560C8;
+  --blue-dark: #0F2660;
+  --gold: #F5C400;
+  --gold-light: #FFD840;
+  --gold-dark: #C9A000;
+  --white: #ffffff;
+  --offwhite: #F4F6FB;
+  --gray: #4A5568;
+  --light-gray: #D8DFE8;
+  --text-dark: #0C1B3A;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--text-dark);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 4px solid var(--blue);
+  box-shadow: 0 2px 16px rgba(26,60,143,0.12);
+}
+.nav-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-circle {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900; font-size: 12px;
+  color: var(--gold);
+  text-align: center;
+  line-height: 1.2;
+  border: 2px solid var(--gold);
+}
+.nav-org-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--blue);
+  line-height: 1.3;
+}
+.nav-org-sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  padding: 0 32px;
+}
+.nav-links a {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--blue);
+  padding: 10px 18px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { background: var(--blue); color: var(--white); }
+.nav-links a.active { background: var(--blue); color: var(--white); }
+/* ── DROPDOWN ── */
+.nav-links li { position: relative; }
+.nav-links li .dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: #0047AB;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0,71,171,0.25);
+  min-width: 240px;
+  z-index: 200;
+  border: 1.5px solid rgba(255,215,0,0.3);
+  overflow: hidden;
+  padding: 6px 0;
+}
+.nav-links li:hover .dropdown { display: block; }
+.nav-links li.force-close .dropdown { display: none !important; }
+.nav-links li .dropdown a {
+  display: block;
+  padding: 11px 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  white-space: nowrap;
+  background: transparent !important;
+}
+.nav-links li .dropdown a:last-child { border-bottom: none; }
+.nav-links li .dropdown a:hover {
+  background: rgba(255,215,0,0.15) !important;
+  color: #FFD700;
+  padding-left: 26px;
+  transition: padding-left 0.15s, color 0.15s;
+}
+/* Prevent active class from being applied to dropdown links */
+.nav-links li .dropdown a.active {
+  background: transparent !important;
+  color: rgba(255,255,255,0.9) !important;
+}
+.has-dropdown > a::after {
+  content: ' ▾';
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.nav-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  border-radius: 3px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 8px rgba(245,196,0,0.3);
+  border: none;
+  line-height: 1;
+  min-width: 88px;
+  text-align: center;
+}
+.nav-badge-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  color: var(--blue-dark);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.nav-badge-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--blue-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-top: 2px;
+}
+.nav-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-social-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.nav-social-icon:hover { transform: translateY(-2px); opacity: 0.85; }
+.nav-social-icon.fb { background: #1877F2; }
+.nav-social-icon.yt { background: #FF0000; }
+.nav-social-icon.ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.nav-social-icon svg { width: 19px; height: 19px; fill: #fff; pointer-events: none; }
+
+/* ── FEEDBACK BUTTON ── */
+.nav-feedback-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--blue);
+  color: var(--gold);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 12px 22px;
+  border-radius: 3px;
+  border: 2px solid var(--blue);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+.nav-feedback-btn:hover { background: var(--gold); color: var(--blue-dark); transform: translateY(-1px); }
+
+/* ── FEEDBACK MODAL ── */
+.feedback-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13,31,74,0.65);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.feedback-modal-overlay.open { display: flex; }
+.feedback-modal-box {
+  background: #fff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+.feedback-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  background: var(--blue);
+  border-bottom: 3px solid var(--gold);
+}
+.feedback-modal-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--gold);
+}
+.feedback-modal-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.feedback-modal-close:hover { background: rgba(255,255,255,0.15); }
+.feedback-modal-body {
+  overflow-y: auto;
+  flex: 1;
+}
+.feedback-modal-body iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+/* ── BOOKING FORM ── */
+.booking-form { padding: 24px 26px 28px; }
+.booking-form-intro {
+  font-size: 13.5px;
+  color: var(--gray);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+.booking-field { margin-bottom: 16px; }
+.booking-field label {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 12.5px;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+.booking-field input,
+.booking-field select,
+.booking-field textarea {
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #0d1f4a;
+  padding: 11px 13px;
+  border: 1.5px solid var(--light-gray);
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 0.15s;
+}
+.booking-field input:focus,
+.booking-field select:focus,
+.booking-field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+.booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.booking-submit-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--blue);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s;
+}
+.booking-submit-btn:hover { background: var(--gold-light); }
+.booking-note {
+  font-size: 12px;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--blue-dark);
+  padding: 0;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 5px solid var(--gold);
+  line-height: 0;
+  height: calc(100vh - 88px);
+  display: flex;
+  flex-direction: column;
+}
+/* Stats bar inside hero should not shrink */
+.hero .stats-bar { flex-shrink: 0; line-height: normal; }
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 85% 40%, rgba(245,196,0,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 10% 90%, rgba(15,38,96,0.4) 0%, transparent 50%);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+/* Hero fullwidth layout */
+.hero-slideshow-bg {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #0a1e5e;
+}
+.hero-slideshow-bg::after {
+  display: none;
+}
+.hero-slideshow-bg .principles-slideshow { width: 100%; margin: 0; padding: 0; height: 100%; }
+.hero-slideshow-bg .slideshow-slide {
+  height: 100%;
+}
+.hero-slideshow-bg .slideshow-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: #0a1e5e;
+}
+.hero-slideshow-bg .slide-placeholder { height: 100% !important; min-height: 400px; }
+
+.hero-text-bar {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+  border-top: 4px solid var(--gold);
+  padding: 32px 56px;
+}
+.hero-text-bar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.hero-overlay-content { display: none; }
+.hero-btns-bar { display: none; }
+.hero-slideshow-bg .principles-slideshow {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.hero-slideshow-bg .slideshow-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: #0a1e5e;
+}
+.hero-slideshow-bg .slide-placeholder {
+  height: 100% !important;
+  min-height: 400px;
+}
+.hero-overlay-content {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: 48px 56px 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.hero-btns-bar {
+  position: absolute;
+  bottom: 60px;
+  left: 56px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  z-index: 5;
+}
+.hero-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--blue-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 2px;
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 52px;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 10px;
+}
+.hero h1 span { color: var(--gold); }
+.hero-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.hero-years {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  color: var(--gold-light);
+  letter-spacing: 0.05em;
+  margin-bottom: 32px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gold);
+  color: var(--blue-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 14px 30px;
+  border-radius: 3px;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 14px 30px;
+  border-radius: 3px;
+  border: 2px solid rgba(255,255,255,0.55);
+  text-decoration: none; cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-outline:hover { border-color: var(--gold); background: rgba(245,196,0,0.10); }
+
+.hero-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+}
+.hero-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(245,158,11,0.3);
+  padding-bottom: 10px;
+}
+.hero-card ul { list-style: none; }
+.hero-card ul li {
+  color: rgba(255,255,255,0.88);
+  font-size: 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.4;
+}
+.hero-card ul li::before {
+  content: '▸';
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--blue);
+  padding: 0;
+  border-bottom: 3px solid var(--gold);
+}
+.stats-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  padding: 20px 24px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+/* ── SECTIONS ── */
+.section { padding: 72px 24px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 10px;
+  border-left: 3px solid var(--gold);
+  padding-left: 10px;
+}
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  color: var(--blue-dark);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.section-title span { color: var(--blue); }
+.section-body {
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.8;
+  max-width: 640px;
+}
+.divider {
+  width: 48px; height: 3px;
+  background: var(--gold);
+  border-radius: 0;
+  margin: 16px 0 28px;
+}
+
+/* ── MISSION/VISION ── */
+.mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+}
+.mv-card {
+  border-radius: 4px;
+  padding: 32px;
+}
+.mv-card.mission { background: var(--blue); color: var(--white); border-left: 5px solid var(--gold); }
+.mv-card.vision { background: var(--offwhite); border: 1.5px solid var(--light-gray); border-left: 5px solid var(--blue); }
+.mv-card-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+.mission .mv-card-label { background: var(--gold); color: var(--blue); }
+.vision .mv-card-label { background: var(--blue); color: var(--white); }
+.mv-card p {
+  font-size: 15px;
+  line-height: 1.85;
+}
+.mission p { color: rgba(255,255,255,0.88); }
+.vision p { color: var(--gray); }
+
+/* ── PRINCIPLES ── */
+.principles-bg { background: var(--blue); }
+.principles-bg .section-title { color: var(--white); }
+.principles-bg .section-eyebrow { color: var(--gold-light); }
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.principle-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+  padding: 24px 20px;
+  transition: background 0.2s;
+}
+.principle-card:hover { background: rgba(255,255,255,0.11); }
+.principle-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.principle-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* ── SERVICES ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.service-card {
+  border: 1.5px solid var(--light-gray);
+  border-top: 3px solid var(--blue);
+  border-radius: 4px;
+  padding: 28px 24px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--white);
+}
+.service-card:hover {
+  border-top-color: var(--gold);
+  box-shadow: 0 6px 24px rgba(26,60,143,0.10);
+}
+.service-icon {
+  width: 52px; height: 52px;
+  background: var(--blue);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.service-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.service-desc { font-size: 14px; color: var(--gray); line-height: 1.7; }
+.service-sublist {
+  list-style: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--light-gray);
+}
+.service-sublist li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13px;
+  color: #475569;
+  font-weight: 600;
+  line-height: 1.9;
+}
+.service-sublist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ── MEMBERSHIP ── */
+.membership-bg { background: var(--offwhite); }
+.membership-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.membership-list { list-style: none; margin-top: 24px; }
+.membership-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--light-gray);
+  font-size: 15px;
+  color: #334155;
+  line-height: 1.5;
+}
+.membership-list li:last-child { border-bottom: none; }
+.check {
+  width: 22px; height: 22px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  color: var(--blue);
+  font-weight: 900;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.membership-card {
+  background: var(--blue);
+  border-radius: 4px;
+  padding: 36px;
+  color: var(--white);
+  border-top: 4px solid var(--gold);
+}
+.membership-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 14px;
+}
+.fee-row:last-of-type { border-bottom: none; }
+.fee-label { color: rgba(255,255,255,0.75); }
+.fee-amount {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--gold-light);
+}
+.fee-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.fee-card {
+  background: var(--blue);
+  border-radius: 4px;
+  padding: 28px 24px;
+  color: var(--white);
+  border-top: 3px solid var(--gold);
+}
+.fee-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+.fee-card-caption {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 6px;
+  letter-spacing: 0;
+}
+.fee-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+}
+.fee-card-row:last-of-type { border-bottom: none; }
+.fee-card-label { color: rgba(255,255,255,0.75); }
+.fee-card-amount {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--gold-light);
+  white-space: nowrap;
+}
+.fee-card-total {
+  margin-top: 4px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(245,158,11,0.4);
+}
+.fee-card-total .fee-card-label { color: var(--gold-light); font-weight: 700; }
+.fee-card-total .fee-card-amount { font-size: 16px; }
+@media (max-width: 600px) {
+  .fee-cards-grid { grid-template-columns: 1fr; }
+}
+.membership-cta {
+  display: block;
+  margin-top: 24px;
+  background: var(--gold);
+  color: var(--blue-dark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  text-align: center;
+  padding: 14px;
+  border-radius: 3px;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.membership-cta:hover { background: var(--gold-light); }
+.membership-cta.outline-cta {
+  background: var(--white);
+  color: var(--blue);
+  border: 2px solid var(--blue);
+}
+.membership-cta.outline-cta:hover { background: var(--blue); color: var(--white); }
+
+/* ── MEMBERSHIP TABS ── */
+.tab-toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  background: var(--offwhite);
+  border-radius: 3px;
+  padding: 4px;
+  gap: 4px;
+  margin: 28px 0 8px;
+  border: 1.5px solid var(--light-gray);
+}
+.tab-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 24px;
+  border-radius: 2px;
+  border: none;
+  background: transparent;
+  color: var(--blue);
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, color 0.2s;
+}
+.tab-btn:hover { background: rgba(26,60,143,0.08); }
+.tab-btn.active { background: var(--blue); color: var(--gold); }
+.tab-btn.active:hover { background: var(--blue); }
+
+.steps-list { list-style: none; counter-reset: steps; margin-top: 22px; }
+.steps-list li {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--light-gray);
+  font-size: 15px;
+  color: #334155;
+  line-height: 1.5;
+}
+.steps-list li:last-child { border-bottom: none; }
+.steps-list li::before {
+  counter-increment: steps;
+  content: counter(steps);
+  width: 22px; height: 22px;
+  background: var(--blue);
+  color: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.walkin-info {
+  background: #fff;
+  border: 2px solid var(--light-gray);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-top: 22px;
+}
+.walkin-info-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: #334155;
+  padding: 7px 0;
+}
+.walkin-info-row b { color: var(--blue); font-family: 'Montserrat', sans-serif; }
+
+/* ── VALUES ── */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.value-card {
+  text-align: center;
+  padding: 28px 20px;
+  border-radius: 4px;
+  background: var(--offwhite);
+  border: 1.5px solid var(--light-gray);
+  border-bottom: 3px solid var(--blue);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.value-card:hover { border-bottom-color: var(--gold); box-shadow: 0 4px 18px rgba(26,60,143,0.09); }
+.value-icon { font-size: 36px; margin-bottom: 12px; }
+.value-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.value-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--blue-dark);
+  color: rgba(255,255,255,0.7);
+  padding: 48px 24px 24px;
+  border-top: 4px solid var(--gold);
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-brand-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.footer-brand-sub {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.footer-desc { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.6); }
+.footer-col h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  text-decoration: none;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+}
+.footer-bottom strong { color: var(--gold); }
+.footer-map-wrap {
+  max-width: 1200px;
+  margin: 8px auto 0;
+  padding: 0 24px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.footer-map-wrap iframe {
+  display: block;
+  border-radius: 12px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1180px) {
+  .nav-inner { padding: 0 14px; gap: 0; }
+  .nav-links { gap: 0; padding: 0 10px; }
+  .nav-links a { padding: 8px 10px; font-size: 12px; }
+  .nav-right { gap: 8px; }
+  .nav-right img { display: none; }
+  .nav-feedback-btn { padding: 9px 12px; font-size: 11px; }
+}
+@media (max-width: 980px) {
+  .nav-socials { display: none; }
+}
+@media (max-width: 900px) {
+  .hero-text-bar { padding: 24px 20px; }
+  .hero-text-bar-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .hero h1 { font-size: 30px; }
+  .hero { height: auto; }
+  .hero-slideshow-bg .slideshow-slide img { height: 55vw !important; max-height: 320px !important; }
+  .hero-slideshow-bg .slide-placeholder { height: 320px !important; min-height: unset !important; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .mv-grid { grid-template-columns: 1fr; }
+  .principles-grid { grid-template-columns: repeat(2,1fr); }
+  .services-grid { grid-template-columns: repeat(2,1fr); }
+  .membership-inner { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .nav-badge { font-size: 16px; }
+}
+
+
+
+/* ── HAMBURGER / MOBILE MENU ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: 2px solid var(--blue);
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--blue);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile overlay menu */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 99;
+}
+.mobile-menu-overlay.open { display: block; }
+.mobile-menu-panel {
+  position: fixed;
+  top: 88px;
+  left: 0; right: 0;
+  background: #fff;
+  border-bottom: 3px solid var(--gold);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  z-index: 100;
+  padding: 12px 0 20px;
+  display: none;
+}
+.mobile-menu-panel.open { display: block; }
+.mobile-menu-panel a {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--blue);
+  padding: 14px 28px;
+  border-bottom: 1px solid #f1f5f9;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.mobile-menu-panel a:hover { background: var(--blue); color: var(--white); }
+.mobile-menu-panel a:last-child { border-bottom: none; }
+.mobile-menu-panel .mobile-join-btn {
+  display: block;
+  margin: 16px 28px 0;
+  background: var(--blue);
+  color: var(--gold);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  text-align: center;
+  padding: 14px;
+  border-radius: 8px;
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mobile-menu-panel .mobile-join-btn:hover { background: var(--gold); color: var(--blue); }
+
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+  .nav-links { display: none !important; }
+  .nav-socials { display: none; }
+}
+</style>
+<style>
+.footer-socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.footer-social-btn {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.footer-social-btn:hover { transform: translateY(-3px); opacity: 0.85; }
+.footer-social-btn.fb { background: #1877F2; }
+.footer-social-btn.yt { background: #FF0000; }
+.footer-social-btn.ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.footer-social-btn svg { width: 18px; height: 18px; fill: #fff; pointer-events: none; }
+</style>
+</head>
+<body id="top">
+
+<!-- NAV -->
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="1.png" alt="OLPMPC Logo" style="height:62px;width:62px;object-fit:contain;border-radius:50%;">
+      <div>
+        <div class="nav-org-name">Our Lady of Peace</div>
+        <div class="nav-org-sub">Multipurpose Cooperative</div>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#top" class="active">Home</a></li>
+      <li class="has-dropdown">
+        <a href="#about">OLPMPC</a>
+        <div class="dropdown">
+          <a href="#about">About</a>
+          <a href="#board">OLPMPC Board of Directors</a>
+          <a href="#committees">OLPMPC Committees</a>
+          <a href="#management">OLPMPC Management Team</a>
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#orgchart">Organizational Chart</a>
+        </div>
+      </li>
+      <li><a href="#membership">Membership</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#careers">Careers</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <img src="3.png" alt="38 Years" style="height:52px;width:auto;object-fit:contain;flex-shrink:0;">
+      <button type="button" class="nav-feedback-btn" onclick="openFeedbackModal()">📝 JOIN OLPMPC</button>
+      <div class="nav-socials">
+        <a href="https://www.facebook.com/OLPMPCantipolo" target="_blank" rel="noopener noreferrer" class="nav-social-icon fb" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@olpmpc" target="_blank" rel="noopener noreferrer" class="nav-social-icon yt" title="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/olpmpc" target="_blank" rel="noopener noreferrer" class="nav-social-icon ig" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+<div class="mobile-menu-panel" id="mobileMenuPanel">
+  <a href="#top" onclick="closeMobileMenu()">🏠 Home</a>
+  <a href="#about" onclick="closeMobileMenu()">ℹ️ About OLPMPC</a>
+  <a href="#board" onclick="closeMobileMenu()">👥 Board of Directors</a>
+  <a href="#committees" onclick="closeMobileMenu()">🏛️ Committees</a>
+  <a href="#management" onclick="closeMobileMenu()">👔 Management Team</a>
+  <a href="#membership" onclick="closeMobileMenu()">📋 Membership</a>
+  <a href="#videos" onclick="closeMobileMenu()">🎬 Videos</a>
+  <a href="#services" onclick="closeMobileMenu()">⚙️ Services</a>
+  <a href="#careers" onclick="closeMobileMenu()">💼 Careers</a>
+  <a href="#contact" onclick="closeMobileMenu()">📍 Contact</a>
+  <button class="mobile-join-btn" onclick="closeMobileMenu();openFeedbackModal()">📝 JOIN OLPMPC</button>
+</div>
+
+<!-- FEEDBACK MODAL -->
+<div class="feedback-modal-overlay" id="feedbackModalOverlay" onclick="if(event.target===this) closeFeedbackModal()">
+  <div class="feedback-modal-box">
+    <div class="feedback-modal-header">
+      <span class="feedback-modal-title">📝 Join OLPMPC</span>
+      <button type="button" class="feedback-modal-close" aria-label="Close" onclick="closeFeedbackModal()">×</button>
+    </div>
+    <div class="feedback-modal-body">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfs92WiMsNSOHpjazDXX31wYhXXa6sQA4J6zvdZiFpaDNpm3w/viewform?embedded=true" width="640" height="4794" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- Slideshow -->
+  <div class="hero-slideshow-bg" style="display:block;padding:0;margin:0;">
+    <div class="principles-slideshow" style="margin:0;border-radius:0;box-shadow:none;overflow:hidden;width:100%;max-width:100%;">
+      <div class="slideshow-track" id="slideshowTrack">
+        <div class="slideshow-slide active">
+          <img src="coop.png" alt="OLPMPC Slide 1" onerror="this.style.display='none';this.nextElementSibling.style.display='felc';">
+          <div class="slide-placeholder" style="height:480px;">
+            <span>📷</span>
+            <p>Replace <code>13.jpg</code> with your first image</p>
+          </div>
+        </div>
+        <div class="slideshow-slide">
+          <img src="coop2.png" alt="OLPMPC Slide 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="slide-placeholder" style="height:480px;">
+            <span>📷</span>
+            <p>Replace <code>14.jpg</code> with your second image</p>
+          </div>
+        </div>
+        <div class="slideshow-slide">
+          <img src="coop3.png" alt="OLPMPC Slide 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="slide-placeholder" style="height:480px;">
+            <span>📷</span>
+            <p>Replace <code>15.jpg</code> with your third image</p>
+          </div>
+        </div>
+        <div class="slideshow-slide">
+          <img src="coop4.png" alt="OLPMPC Slide 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="slide-placeholder" style="height:480px;">
+            <span>📷</span>
+            <p>Replace <code>16.jpg</code> with your fourth image</p>
+          </div>
+        </div>
+        <div class="slideshow-slide">
+          <img src="17.jpg" alt="OLPMPC Slide 5" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="slide-placeholder" style="height:480px;">
+            <span>📷</span>
+            <p>Replace <code>17.jpg</code> with your fifth image</p>
+          </div>
+        </div>
+        <div class="slideshow-slide">
+          <img src="18.jpg" alt="OLPMPC Slide 6" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="slide-placeholder" style="height:480px;">
+            <span>📷</span>
+            <p>Replace <code>18.jpg</code> with your sixth image</p>
+          </div>
+        </div>
+        <div class="slideshow-slide">
+          <img src="19.jpg" alt="OLPMPC Slide 7" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="slide-placeholder" style="height:480px;">
+            <span>📷</span>
+            <p>Replace <code>19.jpg</code> with your seventh image</p>
+          </div>
+        </div>
+      </div>
+      <button class="slide-btn slide-prev" onclick="moveSlide(-1)" aria-label="Previous slide"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="slide-btn slide-next" onclick="moveSlide(1)" aria-label="Next slide"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+      <div class="slide-dots">
+        <button class="slide-dot active" onclick="goToSlide(0)"></button>
+        <button class="slide-dot" onclick="goToSlide(1)"></button>
+        <button class="slide-dot" onclick="goToSlide(2)"></button>
+        <button class="slide-dot" onclick="goToSlide(3)"></button>
+        <button class="slide-dot" onclick="goToSlide(4)"></button>
+        <button class="slide-dot" onclick="goToSlide(5)"></button>
+        <button class="slide-dot" onclick="goToSlide(6)"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Buttons bar -->
+  <div style="background:var(--blue-dark);padding:16px 56px;display:flex;gap:14px;justify-content:center;align-items:center;border-top:4px solid var(--gold);flex-shrink:0;line-height:normal;">
+    <a href="#membership" class="btn-primary">Be a Member</a>
+    <a href="#about" class="btn-outline">Learn More</a>
+  </div>
+
+  <!-- STATS BAR inside hero -->
+  <div class="stats-bar" style="border-bottom:none;border-top:3px solid rgba(255,255,255,0.15);flex-shrink:0;line-height:normal;">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">38+</div>
+        <div class="stat-label">Years of Service</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5,000+</div>
+        <div class="stat-label">Active Members</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">₱100M+</div>
+        <div class="stat-label">Assets</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">7</div>
+        <div class="stat-label">Core Programs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="section" id="videos" style="background:#f8fafc;">
+  <div class="section-inner">
+    <p class="section-eyebrow">Watch &amp; Learn</p>
+    <h2 class="section-title">OLPMPC <span>Videos</span></h2>
+    <div class="divider"></div>
+
+    <style>
+      .video-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        margin-top: 36px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .video-card {
+        background: #fff;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 18px;
+        border-radius: 12px;
+        box-shadow: 0 2px 16px rgba(0,71,171,0.10);
+      }
+
+      .video-embed-wrap {
+        position: relative;
+        width: 100%;
+        padding-bottom: 52%;
+        height: 0;
+        background: #0d1f4a;
+        cursor: pointer;
+        overflow: hidden;
+        display: block;
+      }
+      .video-thumb {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+        background: linear-gradient(135deg, #0047AB, #1a6de0);
+        display: block;
+      }
+      .video-embed-wrap:hover .video-thumb { transform: scale(1.04); }
+      .video-play-btn {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 68px; height: 68px;
+        background: rgba(255,0,0,0.92);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+        transition: transform 0.2s, background 0.2s;
+        z-index: 2;
+      }
+      .video-embed-wrap:hover .video-play-btn {
+        transform: translate(-50%, -50%) scale(1.12);
+        background: #ff0000;
+      }
+      .video-play-btn svg { width: 32px; height: 32px; fill: #fff; margin-left: 5px; pointer-events: none; }
+      /* YouTube branding bottom-right */
+      .video-yt-brand {
+        position: absolute;
+        bottom: 10px; right: 12px;
+        display: flex; align-items: center; gap: 5px;
+        background: rgba(0,0,0,0.55);
+        border-radius: 4px;
+        padding: 3px 8px;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .video-yt-brand svg { width: 16px; height: 11px; pointer-events: none; }
+      .video-yt-brand span {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 0.04em;
+      }
+      /* Channel info bar on top of card */
+      .video-channel-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        background: #fff;
+        border-bottom: 1px solid #f1f5f9;
+      }
+      .video-channel-avatar {
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0047AB, #1a6de0);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+      }
+      .video-channel-name {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+        color: #0d1f4a;
+        line-height: 1.2;
+      }
+      .video-channel-sub {
+        font-size: 11px;
+        color: #64748b;
+        font-weight: 500;
+      }
+
+      /* Custom URL input card */
+      .video-add-card {
+        background: linear-gradient(135deg, #0047AB 0%, #1a6de0 100%);
+        border-radius: 14px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        min-height: 240px;
+        border: 2px dashed rgba(255,215,0,0.5);
+        cursor: pointer;
+        transition: border-color 0.2s;
+        grid-column: span 1;
+      }
+      .video-add-card:hover { border-color: #FFD700; }
+      .video-add-icon { font-size: 40px; }
+      .video-add-label {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 15px;
+        color: #FFD700;
+        text-align: center;
+      }
+      .video-add-sub {
+        font-size: 12px;
+        color: rgba(255,255,255,0.7);
+        text-align: center;
+        max-width: 220px;
+        line-height: 1.6;
+      }
+      .video-url-form {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 320px;
+      }
+      .video-url-input {
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 2px solid #FFD700;
+        font-size: 13px;
+        font-family: 'Montserrat', sans-serif;
+        outline: none;
+        width: 100%;
+      }
+      .video-url-btn {
+        background: #FFD700;
+        color: #0047AB;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .video-url-btn:hover { background: #ffe84d; }
+      .video-cancel-btn {
+        background: transparent;
+        color: rgba(255,255,255,0.7);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        border: none;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      .video-info {
+        padding: 16px 18px;
+      }
+      .video-info-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 14px;
+        color: #0047AB;
+        margin-bottom: 4px;
+      }
+      .video-info-label {
+        font-size: 11px;
+        color: #64748b;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+      .video-remove-btn {
+        float: right;
+        background: none;
+        border: none;
+        color: #e2e8f0;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 0.2s;
+        margin-top: -2px;
+      }
+      .video-remove-btn:hover { color: #ef4444; }
+
+      .video-action-bar { display: none; }
+      .video-yt-link { display: none; }
+    </style>
+
+    <div class="video-grid" id="videoGrid">
+      <!-- Default video 1: PMES -->
+      <div class="video-card">
+        <a href="https://www.youtube.com/watch?v=evh85BmhZHY" target="_blank" rel="noopener noreferrer" class="video-embed-wrap">
+          <img class="video-thumb" src="https://img.youtube.com/vi/evh85BmhZHY/maxresdefault.jpg" alt="PMES Video"
+            onerror="this.src='https://img.youtube.com/vi/evh85BmhZHY/sddefault.jpg'; this.onerror=function(){this.src='https://img.youtube.com/vi/evh85BmhZHY/hqdefault.jpg';}">
+          <div class="video-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="video-yt-brand">
+            <svg viewBox="0 0 90 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"/>
+              <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"/>
+              <path d="M34.6024 13.0036L31.3945 1.41846H33.5995L34.9937 6.86419C35.3675 8.34687 35.6351 9.59422 35.7959 10.6063H35.8654C35.9933 9.81527 36.2608 8.57257 36.6617 6.86419L38.0929 1.41846H40.298L36.8974 13.0036V18.5604H34.6649V13.0036H34.6024Z" fill="white"/>
+              <path d="M41.4697 18.5604V6.48483H43.4648V7.84347C44.0949 6.87875 44.9785 6.39648 46.1055 6.39648C46.9889 6.39648 47.6578 6.67801 48.1121 7.24107C48.5664 7.80413 48.7935 8.66176 48.7935 9.81398V18.5604H46.7984V10.1013C46.7984 9.46027 46.6773 8.98718 46.435 8.68213C46.1927 8.37708 45.8328 8.22455 45.3551 8.22455C44.9785 8.22455 44.6297 8.3255 44.3085 8.5274C43.9873 8.72929 43.7054 9.00154 43.4648 9.34389V18.5604H41.4697Z" fill="white"/>
+            </svg>
+          </div>
+        </a>
+        <div class="video-info">
+          <button class="video-remove-btn" onclick="this.closest('.video-card').remove()" title="Remove video">✕</button>
+          <div class="video-info-label">Featured</div>
+          <div class="video-info-title">OLPMPC Online PMES 2026 — Pre-Membership Education Seminar</div>
+        </div>
+        <div class="video-action-bar">
+          <div class="video-action-icons">
+            <span title="Share">&#8594;</span>
+            <span title="Watch Later">&#9711;</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=evh85BmhZHY" target="_blank" rel="noopener noreferrer" class="video-yt-link">
+            Watch on <svg viewBox="0 0 90 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"/><path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"/></svg> YouTube
+          </a>
+        </div>
+      </div>
+
+      <!-- Default video 2: Lingkod -->
+      <div class="video-card">
+        <a href="https://www.youtube.com/watch?v=B1rENWCjWVc" target="_blank" rel="noopener noreferrer" class="video-embed-wrap">
+          <img class="video-thumb" src="https://img.youtube.com/vi/B1rENWCjWVc/maxresdefault.jpg" alt="Lingkod Video"
+            onerror="this.src='https://img.youtube.com/vi/B1rENWCjWVc/sddefault.jpg'; this.onerror=function(){this.src='https://img.youtube.com/vi/B1rENWCjWVc/hqdefault.jpg';}">
+          <div class="video-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="video-yt-brand">
+            <svg viewBox="0 0 90 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"/>
+              <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"/>
+              <path d="M34.6024 13.0036L31.3945 1.41846H33.5995L34.9937 6.86419C35.3675 8.34687 35.6351 9.59422 35.7959 10.6063H35.8654C35.9933 9.81527 36.2608 8.57257 36.6617 6.86419L38.0929 1.41846H40.298L36.8974 13.0036V18.5604H34.6649V13.0036H34.6024Z" fill="white"/>
+              <path d="M41.4697 18.5604V6.48483H43.4648V7.84347C44.0949 6.87875 44.9785 6.39648 46.1055 6.39648C46.9889 6.39648 47.6578 6.67801 48.1121 7.24107C48.5664 7.80413 48.7935 8.66176 48.7935 9.81398V18.5604H46.7984V10.1013C46.7984 9.46027 46.6773 8.98718 46.435 8.68213C46.1927 8.37708 45.8328 8.22455 45.3551 8.22455C44.9785 8.22455 44.6297 8.3255 44.3085 8.5274C43.9873 8.72929 43.7054 9.00154 43.4648 9.34389V18.5604H41.4697Z" fill="white"/>
+            </svg>
+          </div>
+        </a>
+        <div class="video-info">
+          <button class="video-remove-btn" onclick="this.closest('.video-card').remove()" title="Remove video">✕</button>
+          <div class="video-info-label">Cooperative Life</div>
+          <div class="video-info-title">Lingkod | OLPMPC — Our Lady of Peace Multipurpose Cooperative</div>
+        </div>
+        <div class="video-action-bar">
+          <div class="video-action-icons">
+            <span title="Share">&#8594;</span>
+            <span title="Watch Later">&#9711;</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=B1rENWCjWVc" target="_blank" rel="noopener noreferrer" class="video-yt-link">
+            Watch on <svg viewBox="0 0 90 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"/><path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"/></svg> YouTube
+          </a>
+        </div>
+      </div>
+
+      <!-- Add Video Card -->
+      <div class="video-add-card" id="addVideoCard" onclick="toggleAddForm()">
+        <div class="video-add-icon">▶️</div>
+        <div class="video-add-label">+ Add a YouTube Video</div>
+        <div class="video-add-sub">Paste any YouTube link to embed it here on the website</div>
+        <div class="video-url-form" id="videoUrlForm" onclick="event.stopPropagation()">
+          <input class="video-url-input" id="videoUrlInput" type="text" placeholder="https://www.youtube.com/watch?v=..." />
+          <input class="video-url-input" id="videoTitleInput" type="text" placeholder="Video title (optional)" />
+          <button class="video-url-btn" onclick="addVideo()">Embed Video</button>
+          <button class="video-cancel-btn" onclick="toggleAddForm()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleAddForm() {
+  const form = document.getElementById('videoUrlForm');
+  const label = document.querySelector('.video-add-label');
+  const sub = document.querySelector('.video-add-sub');
+  const icon = document.querySelector('.video-add-icon');
+  const showing = form.style.display === 'flex';
+  form.style.display = showing ? 'none' : 'flex';
+  label.style.display = showing ? '' : 'none';
+  sub.style.display = showing ? '' : 'none';
+  icon.style.display = showing ? '' : 'none';
+}
+
+function getYouTubeId(url) {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
+    /youtube\.com\/shorts\/([^&\n?#]+)/
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+function addVideo() {
+  const url = document.getElementById('videoUrlInput').value.trim();
+  const title = document.getElementById('videoTitleInput').value.trim() || 'OLPMPC Video';
+  const videoId = getYouTubeId(url);
+  if (!videoId) {
+    alert('Please enter a valid YouTube URL.');
+    return;
+  }
+  const grid = document.getElementById('videoGrid');
+  const addCard = document.getElementById('addVideoCard');
+  const card = document.createElement('div');
+  card.className = 'video-card';
+  card.innerHTML = `
+    <div class="video-channel-bar">
+      <div class="video-channel-avatar">
+        <img src="https://img.youtube.com/vi/${videoId}/default.jpg" alt="OLPMPC" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <div class="video-channel-name">OLPMPC</div>
+        <div class="video-channel-sub">Our Lady of Peace Multi Purpose Cooperative</div>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer" class="video-embed-wrap">
+      <img class="video-thumb" src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="${title}" onerror="this.src='https://img.youtube.com/vi/${videoId}/sddefault.jpg'; this.onerror=function(){this.src='https://img.youtube.com/vi/${videoId}/hqdefault.jpg';}">
+      <div class="video-play-btn"><svg viewBox="0 0 24 24" style="pointer-events:none"><path d="M8 5v14l11-7z" fill="white"/></svg></div>
+      <div class="video-yt-brand">
+        <svg viewBox="0 0 90 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="pointer-events:none">
+          <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"/>
+          <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"/>
+        </svg>
+        <span style="color:#fff;font-size:10px;font-family:'Montserrat',sans-serif;font-weight:700;">YouTube</span>
+      </div>
+    </a>
+    <div class="video-info">
+      <button class="video-remove-btn" onclick="this.closest('.video-card').remove()" title="Remove video">✕</button>
+      <div class="video-info-label">OLPMPC</div>
+      <div class="video-info-title">${title}</div>
+    </div>`;
+  grid.insertBefore(card, addCard);
+  document.getElementById('videoUrlInput').value = '';
+  document.getElementById('videoTitleInput').value = '';
+  toggleAddForm();
+}
+</script>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <p class="section-eyebrow">About Us</p>
+    <h2 class="section-title">About Our Lady of Peace<br><span>Multipurpose Cooperative</span></h2>
+    <div class="divider"></div>
+    <p class="section-body">Our Lady of Peace Multipurpose Cooperative (OLPMPC) is one of the hundreds of cooperatives serving the City of Antipolo. It is named after the National Shrine Patroness, the Our Lady of Peace and Good Voyage. For 38 years, we have remained committed to empowering lives, strengthening our community, and building a better tomorrow through cooperation, unity, growth, and service.</p>
+
+    <div class="mv-grid">
+      <div class="mv-card mission">
+        <span class="mv-card-label">Mission</span>
+        <p>Makabuo, maipatupad at maisabuhay ang mga programa, plano at proyekto na naaayon sa panuntunang makatao at maka-Diyos — upang mapabuti ang buhay ng bawat miyembro at komunidad.</p>
+      </div>
+      <div class="mv-card vision">
+        <span class="mv-card-label">Vision</span>
+        <p>A self-sustaining, God-centered cooperative community where every member actively participates in economic growth, social development, and spiritual well-being — guided by the principles of cooperation and solidarity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+/* ── PRINCIPLES SLIDESHOW ── */
+.principles-slideshow {
+  position: relative;
+  max-width: 860px;
+  margin: 40px auto 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+}
+.slideshow-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.slideshow-slide {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+.slideshow-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+.slideshow-slide img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+/* Hero override — full bleed, no radius */
+.hero-slideshow-bg .slideshow-slide img {
+  border-radius: 0 !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  background: #0a1e5e;
+}
+/* Placeholder shown when image fails to load */
+.slide-placeholder {
+  display: none;
+  width: 100%;
+  height: 460px;
+  background: rgba(255,255,255,0.08);
+  border: 2px dashed rgba(255,215,0,0.5);
+  border-radius: 16px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  text-align: center;
+  padding: 24px;
+}
+.slide-placeholder span { font-size: 48px; }
+.slide-placeholder code {
+  background: rgba(255,215,0,0.2);
+  color: #FFD700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+/* Arrows */
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 3px solid rgba(200,200,200,0.55);
+  color: rgba(200,200,200,0.65);
+  font-size: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+  opacity: 0.75;
+  padding: 0;
+}
+.slide-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  flex-shrink: 0;
+}
+.slide-btn:hover {
+  background: rgba(0,71,171,0.55);
+  border-color: var(--gold);
+  color: #fff;
+  opacity: 1;
+}
+.slide-prev { left: 16px; }
+.slide-next { right: 16px; }
+/* Dots */
+.slide-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+.slide-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.6);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  padding: 0;
+}
+.slide-dot.active {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ── HERO SLIDESHOW WRAPPER ── */
+.hero-slideshow-wrap {
+  background: linear-gradient(180deg, #002f80 0%, #0047AB 100%);
+  padding: 0 0 32px;
+}
+.hero-slideshow-wrap .principles-slideshow {
+  border-radius: 0;
+  box-shadow: none;
+  max-width: 100%;
+  margin: 0;
+}
+.hero-slideshow-wrap .slideshow-slide img {
+  border-radius: 0;
+  height: 420px;
+}
+.hero-slideshow-wrap .slide-placeholder {
+  border-radius: 0;
+  height: 420px;
+}
+@media (max-width: 900px) {
+  .hero-slideshow-wrap .slideshow-slide img,
+  .hero-slideshow-wrap .slide-placeholder {
+    height: 240px;
+  }
+}
+</style>
+
+<script>
+(function() {
+  let current = 0;
+  const total = 7;
+  let autoTimer;
+
+  function showSlide(n) {
+    const slides = document.querySelectorAll('.slideshow-slide');
+    const dots = document.querySelectorAll('.slide-dot');
+    current = (n + total) % total;
+    slides.forEach((s, i) => s.classList.toggle('active', i === current));
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  window.moveSlide = function(dir) {
+    showSlide(current + dir);
+    resetAuto();
+  };
+
+  window.goToSlide = function(n) {
+    showSlide(n);
+    resetAuto();
+  };
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => showSlide(current + 1), 5000);
+  }
+
+  // Auto-advance every 5 seconds
+  autoTimer = setInterval(() => showSlide(current + 1), 5000);
+})();
+</script>
+
+<!-- BOARD OF DIRECTORS -->
+<section class="section" id="board" style="background:#f0f6ff;">
+  <div class="section-inner">
+    <p class="section-eyebrow">Leadership</p>
+    <h2 class="section-title">OLPMPC <span>Board of Directors</span></h2>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:32px;margin-top:40px;">
+      <!-- Chairperson -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <div style="width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#0047AB,#1a6de0);display:flex;align-items:center;justify-content:center;border:4px solid #FFD700;box-shadow:0 4px 18px rgba(0,71,171,0.18);">
+          <svg width="54" height="54" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#0047AB;text-align:center;">Chairperson</div>
+        <div style="font-size:12px;color:#64748b;font-weight:600;">Board of Directors</div>
+      </div>
+      <!-- Vice Chairperson -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <div style="width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#0057C8,#1a6de0);display:flex;align-items:center;justify-content:center;border:3px solid #FFD700;box-shadow:0 4px 14px rgba(0,71,171,0.15);">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;color:#0047AB;text-align:center;">Vice Chairperson</div>
+        <div style="font-size:12px;color:#64748b;font-weight:600;">Board of Directors</div>
+      </div>
+      <!-- Three Directors -->
+      <div style="display:flex;gap:40px;justify-content:center;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#0047AB,#0057C8);display:flex;align-items:center;justify-content:center;border:3px solid #e2e8f0;box-shadow:0 3px 12px rgba(0,71,171,0.12);">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#0047AB;">Director</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#0047AB,#0057C8);display:flex;align-items:center;justify-content:center;border:3px solid #e2e8f0;box-shadow:0 3px 12px rgba(0,71,171,0.12);">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#0047AB;">Director</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#0047AB,#0057C8);display:flex;align-items:center;justify-content:center;border:3px solid #e2e8f0;box-shadow:0 3px 12px rgba(0,71,171,0.12);">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#0047AB;">Director</div>
+        </div>
+      </div>
+      <!-- BOD Secretary & Treasurer -->
+      <div style="display:flex;gap:40px;justify-content:center;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#0047AB,#0057C8);display:flex;align-items:center;justify-content:center;border:3px solid #FFD700;box-shadow:0 3px 12px rgba(0,71,171,0.12);">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#0047AB;">BOD Secretary</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+          <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#0047AB,#0057C8);display:flex;align-items:center;justify-content:center;border:3px solid #FFD700;box-shadow:0 3px 12px rgba(0,71,171,0.12);">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#0047AB;">OLPMPC Treasurer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITTEES -->
+<section class="section" id="committees">
+  <div class="section-inner">
+    <p class="section-eyebrow">Governance</p>
+    <h2 class="section-title">OLPMPC <span>Committees</span></h2>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;gap:48px;margin-top:40px;">
+      <!-- Committee template macro -->
+      <style>
+        .committee-block { background:#f0f6ff; border-radius:14px; padding:28px 32px; }
+        .committee-title { font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#0047AB;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:20px;text-align:center;border-bottom:2px solid #FFD700;padding-bottom:10px; }
+        .committee-members { display:flex;gap:32px;justify-content:center;flex-wrap:wrap; }
+        .committee-member { display:flex;flex-direction:column;align-items:center;gap:8px; }
+        .committee-avatar { width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#0047AB,#1a6de0);display:flex;align-items:center;justify-content:center;border:2px solid #FFD700;box-shadow:0 2px 10px rgba(0,71,171,0.15); }
+        .committee-avatar svg { width:34px;height:34px;fill:rgba(255,255,255,0.55); }
+        .committee-role { font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;color:#0047AB;text-align:center; }
+      </style>
+      <div class="committee-block">
+        <div class="committee-title">OLPMPC Election Committee</div>
+        <div class="committee-members">
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Vice Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Secretary</div></div>
+        </div>
+      </div>
+      <div class="committee-block">
+        <div class="committee-title">OLPMPC Audit Committee</div>
+        <div class="committee-members">
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Vice Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Secretary</div></div>
+        </div>
+      </div>
+      <div class="committee-block">
+        <div class="committee-title">OLPMPC Education Committee</div>
+        <div class="committee-members">
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Vice Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Secretary</div></div>
+        </div>
+      </div>
+      <div class="committee-block">
+        <div class="committee-title">OLPMPC Gender &amp; Development Committee</div>
+        <div class="committee-members">
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Vice Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Secretary</div></div>
+        </div>
+      </div>
+      <div class="committee-block">
+        <div class="committee-title">OLPMPC Credit Committee</div>
+        <div class="committee-members">
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Vice Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Secretary</div></div>
+        </div>
+      </div>
+      <div class="committee-block">
+        <div class="committee-title">OLPMPC Mediation &amp; Conciliation Committee</div>
+        <div class="committee-members">
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Vice Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Secretary</div></div>
+        </div>
+      </div>
+      <div class="committee-block">
+        <div class="committee-title">OLPMPC Ethics Committee</div>
+        <div class="committee-members">
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Vice Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Secretary</div></div>
+        </div>
+      </div>
+      <div class="committee-block">
+        <div class="committee-title">OLPMPC Membership and Service Committee</div>
+        <div class="committee-members">
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Vice Chairperson</div></div>
+          <div class="committee-member"><div class="committee-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div><div class="committee-role">Secretary</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANAGEMENT TEAM -->
+<section class="section" id="management" style="background:#f8fafc;">
+  <div class="section-inner">
+    <p class="section-eyebrow">Operations</p>
+    <h2 class="section-title">OLPMPC <span>Management Team</span></h2>
+    <div class="divider"></div>
+    <style>
+      .mgmt-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:40px; }
+      .mgmt-card { display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center; }
+      .mgmt-avatar { width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#0047AB,#1a6de0);display:flex;align-items:center;justify-content:center;border:3px solid #FFD700;box-shadow:0 3px 14px rgba(0,71,171,0.15); }
+      .mgmt-avatar svg { width:44px;height:44px;fill:rgba(255,255,255,0.55); }
+      .mgmt-name { font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;color:#0047AB;text-transform:uppercase;letter-spacing:0.04em; }
+      .mgmt-role { font-size:12px;color:#64748b;font-weight:600; }
+      .mgmt-manager { grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:10px; }
+      .mgmt-manager .mgmt-avatar { width:110px;height:110px;border:4px solid #FFD700; }
+      .mgmt-manager .mgmt-avatar svg { width:54px;height:54px; }
+      .mgmt-manager .mgmt-name { font-size:15px; }
+      @media(max-width:700px){.mgmt-grid{grid-template-columns:repeat(2,1fr);}}
+    </style>
+    <div class="mgmt-grid">
+      <div class="mgmt-manager">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Gemma A. B. Justo</div>
+        <div class="mgmt-role">Manager</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Elenita Estrella</div>
+        <div class="mgmt-role">Posting Clerk I</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Raquel Coronado</div>
+        <div class="mgmt-role">Posting Clerk II</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Robert Solarion</div>
+        <div class="mgmt-role">Bookkeeper</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Mercidita Coronado</div>
+        <div class="mgmt-role">Liaison Officer</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Shiela Marie Bayog</div>
+        <div class="mgmt-role">Store Clerk</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Cashier</div>
+        <div class="mgmt-role">Cashier</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Enrico Galve</div>
+        <div class="mgmt-role">I.T. Personnel</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Randy Ventura</div>
+        <div class="mgmt-role">Maintenance</div>
+      </div>
+      <div class="mgmt-card" style="grid-column:2;">
+        <div class="mgmt-avatar"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></div>
+        <div class="mgmt-name">Ma. Fe Aliño</div>
+        <div class="mgmt-role">Admin Staff</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY POLICY -->
+<section class="section" id="privacy">
+  <div class="section-inner" style="max-width:800px;">
+    <p class="section-eyebrow">Legal</p>
+    <h2 class="section-title">Data Privacy <span>Statement</span></h2>
+    <p style="font-size:13px;font-weight:700;color:#64748b;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.08em;">(Data Privacy Act of 2012)</p>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;gap:28px;margin-top:10px;">
+      <div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:#0047AB;font-style:italic;margin-bottom:10px;">General Statement</h3>
+        <p style="font-size:14px;color:#334155;line-height:1.8;">OLPMPC recognizes the fundamental human right of privacy by protecting your data in accordance with the laws and standards under Republic Act No. 10173, also known as "DATA PRIVACY ACT OF 2012". OLPMPC assures that the data we collect, process, store and share are protected and adhere with the Privacy Principles of transparency, legitimate purpose and proportionality.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:#0047AB;font-style:italic;margin-bottom:10px;">Information we collect:</h3>
+        <p style="font-size:14px;color:#334155;line-height:1.8;margin-bottom:10px;">When you apply as a OLPMPC member, employee, contractor, consultant, service provider, and apprentice, or transact and interact as a customer to any establishment, branch, authorized representative of the Cooperative, we collect your personal information. This may include the following:</p>
+        <ul style="font-size:14px;color:#334155;line-height:2;padding-left:20px;">
+          <li>Name, contact details, address, birthdate, age, marital status, gender, education, biometrics;</li>
+          <li>Specimen signatures, copy of government ID's, employment details, emails, social media accounts;</li>
+          <li>Financial information, employment history;</li>
+          <li>CCTV footage when visiting our OLPMPC office.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:#0047AB;font-style:italic;margin-bottom:10px;">Data / Information Usage</h3>
+        <p style="font-size:14px;color:#334155;line-height:1.8;margin-bottom:10px;">Your information will be used to validate and process applications and transactions with our business operations and offices such as follows:</p>
+        <ul style="font-size:14px;color:#334155;line-height:2;padding-left:20px;">
+          <li>Membership, Loans, Savings and Time Deposit applications</li>
+          <li>Records purchases and charge transactions</li>
+          <li>Application for employment, contractors and service providers</li>
+          <li>Receive info for any updates about marketing activities and promos</li>
+          <li>Share with third parties Personal Information Processors (PIPs) bound with data sharing agreement</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:#0047AB;font-style:italic;margin-bottom:10px;">Store and Protect</h3>
+        <p style="font-size:14px;color:#334155;line-height:1.8;">OLPMPC assures that the information we collect is stored in a secured location, and only authorized personnel can access. Access to electronic information is bound with policy and non-disclosure agreement with issued security clearance.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:#0047AB;font-style:italic;margin-bottom:10px;">Retention and Disposal</h3>
+        <p style="font-size:14px;color:#334155;line-height:1.8;">Your personal information shall be kept for as long as you do business with the cooperative and subject for disposal through deletion and shredding in accordance with the law and internal policy.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:#0047AB;font-style:italic;margin-bottom:10px;">Members Rights</h3>
+        <p style="font-size:14px;color:#334155;line-height:1.8;">In compliance with the Republic Act 10173, we respect and recognize your rights to be informed, access your records, object, request for correction or blocking, damages, file a complaint, rectify your information, and data portability, provided that those will not affect the delivery of our services on your transactions with the cooperative. For comments, suggestions, and clarification, feel free to contact us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIZATIONAL CHART -->
+<section class="section" id="orgchart" style="background:#f0f6ff;">
+  <div class="section-inner">
+    <p class="section-eyebrow">Structure</p>
+    <h2 class="section-title">Organizational <span>Chart</span></h2>
+    <div class="divider"></div>
+    <style>
+      .orgchart-wrap { margin-top:36px; background:linear-gradient(135deg,#0047AB 0%,#1a6de0 100%); border-radius:18px; padding:36px 24px; overflow-x:auto; }
+      .orgchart-title { font-family:'Montserrat',sans-serif;font-weight:900;font-size:18px;color:#fff;text-align:center;line-height:1.3;margin-bottom:4px; }
+      .orgchart-subtitle { font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#FFD700;text-align:center;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:28px; }
+      .org-node { display:inline-flex;flex-direction:column;align-items:center;min-width:90px;gap:4px; }
+      .org-box { background:#fff;border-radius:6px;padding:6px 12px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:#0047AB;text-align:center;white-space:nowrap;min-width:80px;box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+      .org-box.gold { background:#FFD700;color:#002f80; }
+      .org-box.dark { background:#002f80;color:#FFD700; }
+      .org-label { font-size:9px;color:rgba(255,255,255,0.7);font-family:'Montserrat',sans-serif;font-weight:600;text-align:center;text-transform:uppercase;letter-spacing:0.05em; }
+      .org-row { display:flex;justify-content:center;gap:16px;margin-bottom:0; }
+      .org-connector { width:2px;background:rgba(255,255,255,0.4);height:20px;margin:0 auto; }
+      .org-h-line { height:2px;background:rgba(255,255,255,0.4);flex:1;align-self:center; }
+      .org-branch { display:flex;align-items:flex-start;gap:0; }
+    </style>
+    <div class="orgchart-wrap">
+      <div class="orgchart-title">Our Lady of Peace Multipurpose Cooperative (OLPMPC)</div>
+      <div class="orgchart-subtitle">Organizational Structure</div>
+      <!-- General Assembly -->
+      <div style="text-align:center;margin-bottom:4px;"><div class="org-box gold" style="display:inline-block;padding:8px 28px;font-size:12px;">GENERAL ASSEMBLY</div></div>
+      <div class="org-connector"></div>
+      <!-- Three branches -->
+      <div style="display:flex;justify-content:center;align-items:flex-start;gap:0;">
+        <!-- Election Committee -->
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;max-width:220px;">
+          <div class="org-box" style="width:90%;">ELECTION COMMITTEE</div>
+          <div class="org-connector"></div>
+          <div style="display:flex;gap:8px;justify-content:center;">
+            <div class="org-node"><div class="org-box" style="font-size:9px;">Chairperson</div></div>
+            <div class="org-node"><div class="org-box" style="font-size:9px;">V. Chair</div></div>
+          </div>
+          <div class="org-connector"></div>
+          <div class="org-node"><div class="org-box" style="font-size:9px;">Secretary</div></div>
+        </div>
+        <div class="org-h-line" style="margin-top:14px;"></div>
+        <!-- Board of Directors -->
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1.2;max-width:260px;">
+          <div class="org-box dark" style="width:90%;font-size:11px;padding:8px;">BOARD OF DIRECTORS</div>
+          <div class="org-connector"></div>
+          <div class="org-node"><div class="org-box">Chairperson</div></div>
+          <div class="org-connector"></div>
+          <div class="org-node"><div class="org-box">Vice Chairperson</div></div>
+          <div class="org-connector"></div>
+          <div style="display:flex;gap:6px;">
+            <div class="org-node"><div class="org-box" style="font-size:9px;min-width:60px;">Director</div></div>
+            <div class="org-node"><div class="org-box" style="font-size:9px;min-width:60px;">Director</div></div>
+            <div class="org-node"><div class="org-box" style="font-size:9px;min-width:60px;">Director</div></div>
+          </div>
+          <div class="org-connector"></div>
+          <div style="display:flex;gap:8px;">
+            <div class="org-node"><div class="org-box" style="font-size:9px;">Treasurer</div></div>
+            <div class="org-node"><div class="org-box" style="font-size:9px;">BOD Sec.</div></div>
+          </div>
+        </div>
+        <div class="org-h-line" style="margin-top:14px;"></div>
+        <!-- Audit Committee -->
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;max-width:220px;">
+          <div class="org-box" style="width:90%;">AUDIT COMMITTEE</div>
+          <div class="org-connector"></div>
+          <div style="display:flex;gap:8px;justify-content:center;">
+            <div class="org-node"><div class="org-box" style="font-size:9px;">Chairperson</div></div>
+            <div class="org-node"><div class="org-box" style="font-size:9px;">V. Chair</div></div>
+          </div>
+          <div class="org-connector"></div>
+          <div class="org-node"><div class="org-box" style="font-size:9px;">Secretary</div></div>
+        </div>
+      </div>
+      <!-- Committees row -->
+      <div style="margin-top:20px;">
+        <div style="text-align:center;margin-bottom:4px;font-size:9px;color:rgba(255,255,255,0.6);font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Appointive Committees</div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">
+          <div class="org-box" style="background:rgba(255,255,255,0.15);color:#fff;font-size:9px;">Gender &amp; Dev. Committee</div>
+          <div class="org-box" style="background:rgba(255,255,255,0.15);color:#fff;font-size:9px;">Membership &amp; Service Committee</div>
+          <div class="org-box" style="background:rgba(255,255,255,0.15);color:#fff;font-size:9px;">Mediation &amp; Conciliation Committee</div>
+          <div class="org-box" style="background:rgba(255,255,255,0.15);color:#fff;font-size:9px;">Education Committee</div>
+          <div class="org-box" style="background:rgba(255,255,255,0.15);color:#fff;font-size:9px;">Ethics Committee</div>
+          <div class="org-box" style="background:rgba(255,255,255,0.15);color:#fff;font-size:9px;">Credit Committee</div>
+        </div>
+      </div>
+      <!-- Management Team -->
+      <div style="margin-top:20px;text-align:center;">
+        <div class="org-connector"></div>
+        <div style="display:inline-block;"><div class="org-box gold" style="font-size:11px;padding:8px 24px;">MANAGEMENT TEAM</div></div>
+        <div class="org-connector"></div>
+        <div class="org-node" style="display:inline-flex;"><div class="org-box">Manager</div></div>
+        <div class="org-connector"></div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:4px;">
+          <div class="org-box" style="font-size:9px;">Bookkeeper</div>
+          <div class="org-box" style="font-size:9px;">I.T. Personnel</div>
+          <div class="org-box" style="font-size:9px;">Cashier</div>
+          <div class="org-box" style="font-size:9px;">Liaison Officer</div>
+          <div class="org-box" style="font-size:9px;">Admin Staff</div>
+          <div class="org-box" style="font-size:9px;">Maintenance</div>
+          <div class="org-box" style="font-size:9px;">Store Clerk</div>
+          <div class="org-box" style="font-size:9px;">Posting Clerk I</div>
+          <div class="org-box" style="font-size:9px;">Posting Clerk II</div>
+        </div>
+      </div>
+      <!-- Legend -->
+      <div style="margin-top:20px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:16px;height:10px;background:#FFD700;border-radius:2px;"></div><span style="font-size:9px;color:rgba(255,255,255,0.7);font-family:'Montserrat',sans-serif;font-weight:600;">Elective Positions</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:16px;height:10px;background:#fff;border-radius:2px;"></div><span style="font-size:9px;color:rgba(255,255,255,0.7);font-family:'Montserrat',sans-serif;font-weight:600;">Appointive Positions</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-inner">
+    <p class="section-eyebrow">What We Offer</p>
+    <h2 class="section-title">Our <span>Services</span></h2>
+    <div class="divider"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">💰</div>
+        <div class="service-title">Savings Deposit</div>
+        <p class="service-desc">Secure your future with our savings programs offering competitive interest rates for all members.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏦</div>
+        <div class="service-title">Credit / Loans</div>
+        <p class="service-desc">Access flexible loan options for personal, emergency, livelihood, and housing needs at low interest.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💵</div>
+        <div class="service-title">Cash Loan</div>
+        <p class="service-desc">Quick access to cash for personal, emergency, or livelihood needs at low interest rates.</p>
+        <ul class="service-sublist">
+          <li>Education</li>
+          <li>Medical</li>
+          <li>House Renovation</li>
+          <li>Business</li>
+          <li>Personal Loan</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚗</div>
+        <div class="service-title">Vehicle Loan</div>
+        <p class="service-desc">Affordable financing options to help members purchase their own vehicle.</p>
+        <ul class="service-sublist">
+          <li>2 Wheels</li>
+          <li>4 Wheels</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🕊️</div>
+        <div class="service-title">Memorial Loan</div>
+        <p class="service-desc">Financial assistance for memorial and funeral-related expenses during difficult times.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏞️</div>
+        <div class="service-title">Lot Loan</div>
+        <p class="service-desc">Helping members acquire land and property through accessible loan terms.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛒</div>
+        <div class="service-title">Minimart</div>
+        <p class="service-desc">Quality goods at member-friendly prices through our cooperative minimart.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="section membership-bg" id="membership" style="background:#f8fafc;">
+  <div class="section-inner">
+    <p class="section-eyebrow">Join Us</p>
+    <h2 class="section-title">Become a <span>Member</span></h2>
+    <div class="divider"></div>
+    <p class="section-body">Joining OLPMPC is a step toward financial security and community growth. Open to all qualified individuals in Antipolo and surrounding areas. Choose how you'd like to apply:</p>
+
+    <div class="tab-toggle" role="tablist">
+      <button type="button" class="tab-btn active" data-tab="online" onclick="switchMembershipTab('online')">💻 Apply Online</button>
+      <button type="button" class="tab-btn" data-tab="walkin" onclick="switchMembershipTab('walkin')">🏢 Walk-in</button>
+    </div>
+
+    <div class="membership-inner">
+      <div>
+        <!-- ONLINE PANEL -->
+        <div class="tab-panel" data-panel="online">
+          <ul class="membership-list">
+            <li><span class="check">✓</span> Must be a resident or worker in Antipolo City or nearby areas</li>
+            <li><span class="check">✓</span> Must attend the Pre-Membership Education Seminar (PMES)</li>
+            <li><span class="check">✓</span> Must be at least 18 years old and of legal capacity</li>
+            <li><span class="check">✓</span> Submit valid ID and completed membership application form</li>
+            <li><span class="check">✓</span> Pay the required membership fees and initial share capital</li>
+          </ul>
+        </div>
+        <!-- WALK-IN PANEL -->
+        <div class="tab-panel" data-panel="walkin" style="display:none;">
+          <ol class="steps-list">
+            <li>Visit the OLPMPC office in Antipolo City during walk-in application hours.</li>
+            <li>Attend the on-site Pre-Membership Education Seminar (PMES).</li>
+            <li>Fill out the membership application form provided at the office.</li>
+            <li>Submit a valid ID and your completed application form.</li>
+            <li>Pay the required membership fees and initial share capital at the cashier to complete enrollment.</li>
+          </ol>
+          <div class="walkin-info">
+            <div class="walkin-info-row">📍 <span><b>Office:</b> Antipolo City, Rizal</span></div>
+            <div class="walkin-info-row">📞 <span><b>Phone:</b> (02) 123-4567</span></div>
+            <div class="walkin-info-row">🕐 <span><b>Walk-in Application Hours:</b> Monday–Friday, 10:00 AM–3:00 PM | Saturday, 9:00 AM–11:00 AM (closed on Sundays and holidays).</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="fee-cards-grid">
+          <div class="fee-card">
+            <h3 class="fee-card-title">Initial Subscription<span class="fee-card-caption">(Must be full subscription in 1yr)</span></h3>
+            <div class="fee-card-row"><span class="fee-card-label">Membership Fee</span><span class="fee-card-amount">₱200.00</span></div>
+            <div class="fee-card-row"><span class="fee-card-label">Share Capital</span><span class="fee-card-amount">₱1,000.00</span></div>
+            <div class="fee-card-row"><span class="fee-card-label">Savings Deposit</span><span class="fee-card-amount">₱600.00</span></div>
+            <div class="fee-card-row"><span class="fee-card-label">Insurance</span><span class="fee-card-amount">₱400.00</span></div>
+            <div class="fee-card-row"><span class="fee-card-label">Other Fees</span><span class="fee-card-amount">₱100.00</span></div>
+            <div class="fee-card-row fee-card-total"><span class="fee-card-label">Total</span><span class="fee-card-amount">₱2,300.00</span></div>
+          </div>
+          <div class="fee-card">
+            <h3 class="fee-card-title">Fully Subscribed</h3>
+            <div class="fee-card-row"><span class="fee-card-label">Membership Fee</span><span class="fee-card-amount">₱200.00</span></div>
+            <div class="fee-card-row"><span class="fee-card-label">Share Capital</span><span class="fee-card-amount">₱4,000.00</span></div>
+            <div class="fee-card-row"><span class="fee-card-label">Savings Deposit</span><span class="fee-card-amount">₱600.00</span></div>
+            <div class="fee-card-row"><span class="fee-card-label">Insurance</span><span class="fee-card-amount">₱400.00</span></div>
+            <div class="fee-card-row"><span class="fee-card-label">Other Fees</span><span class="fee-card-amount">₱100.00</span></div>
+            <div class="fee-card-row fee-card-total"><span class="fee-card-label">Total</span><span class="fee-card-amount">₱5,300.00</span></div>
+          </div>
+        </div>
+
+        <!-- ONLINE CTAs -->
+        <div class="tab-panel" data-panel="online">
+          <button type="button" class="membership-cta" style="width:100%;cursor:pointer;" onclick="openFeedbackModal()">📝 Apply for Membership Online →</button>
+        </div>
+        <!-- WALK-IN CTAs -->
+        <div class="tab-panel" data-panel="walkin" style="display:none;">
+          <div style="background:#fef3c7;border:1.5px solid #f59e0b;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+            <p style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:4px;">🕐 Open for Walk-in Applications</p>
+            <p style="font-size:12.5px;color:#78350f;line-height:1.5;">Monday–Friday: 10:00 AM–3:00 PM<br>Saturday: 9:00 AM–11:00 AM</p>
+          </div>
+          <a href="#contact" class="membership-cta outline-cta">📍 View Office Location →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-eyebrow">Our Core Values</p>
+    <h2 class="section-title">What We <span>Stand For</span></h2>
+    <div class="divider"></div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-title">Cooperation</div>
+        <p class="value-desc">Working together for the benefit of all members and the wider community.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏛️</div>
+        <div class="value-title">Unity</div>
+        <p class="value-desc">Building solidarity among members to achieve collective goals.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📈</div>
+        <div class="value-title">Growth</div>
+        <p class="value-desc">Empowering members through economic opportunities and education.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💛</div>
+        <div class="value-title">Service</div>
+        <p class="value-desc">Committed to serving members and the community with integrity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section class="section" id="careers" style="background:var(--offwhite);">
+  <div class="section-inner">
+    <p class="section-eyebrow">Work With Us</p>
+    <h2 class="section-title">Career <span>Opportunities</span></h2>
+    <div class="divider"></div>
+    <p class="section-body" style="margin-bottom:36px;">OLPMPC welcomes applications from qualified individuals who share our commitment to cooperative service and community development.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:8px;">
+      <div style="background:#fff;border-radius:6px;padding:30px 28px;border:1px solid var(--light-gray);border-top:3px solid var(--blue);transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(15,38,96,0.10)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10.5px;color:var(--gold-dark);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Accounting Department</div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:var(--blue);margin-bottom:10px;">Posting Clerk</div>
+        <div style="font-size:13px;color:var(--gray);margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--light-gray);">Antipolo City, Rizal &nbsp;&middot;&nbsp; Full-time</div>
+        <p style="font-size:13.5px;color:#334155;line-height:1.7;margin-bottom:20px;">Responsible for daily posting of transactions, maintaining accurate records, and supporting the cooperative's accounting operations.</p>
+        <button type="button" onclick="openFeedbackModal()" style="background:var(--blue);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:0.04em;text-transform:uppercase;padding:11px 22px;border-radius:3px;border:1px solid var(--blue);cursor:pointer;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='#fff';this.style.color='var(--blue)'" onmouseout="this.style.background='var(--blue)';this.style.color='#fff'">Apply Now</button>
+      </div>
+      <div style="background:#fff;border-radius:6px;padding:30px 28px;border:1px solid var(--light-gray);border-top:3px solid var(--blue);transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(15,38,96,0.10)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10.5px;color:var(--gold-dark);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Finance Department</div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:var(--blue);margin-bottom:10px;">Cashier</div>
+        <div style="font-size:13px;color:var(--gray);margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--light-gray);">Antipolo City, Rizal &nbsp;&middot;&nbsp; Full-time</div>
+        <p style="font-size:13.5px;color:#334155;line-height:1.7;margin-bottom:20px;">Handles member transactions, disbursements, and collections, and ensures accurate daily cash counts in accordance with cooperative standards.</p>
+        <button type="button" onclick="openFeedbackModal()" style="background:var(--blue);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:0.04em;text-transform:uppercase;padding:11px 22px;border-radius:3px;border:1px solid var(--blue);cursor:pointer;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='#fff';this.style.color='var(--blue)'" onmouseout="this.style.background='var(--blue)';this.style.color='#fff'">Apply Now</button>
+      </div>
+      <div style="background:#fff;border-radius:6px;padding:30px 28px;border:1px solid var(--light-gray);border-top:3px solid var(--blue);transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(15,38,96,0.10)'" onmouseout="this.style.boxShadow='none'">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:10.5px;color:var(--gold-dark);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Minimart Operations</div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:var(--blue);margin-bottom:10px;">Store Clerk</div>
+        <div style="font-size:13px;color:var(--gray);margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--light-gray);">Antipolo City, Rizal &nbsp;&middot;&nbsp; Full-time</div>
+        <p style="font-size:13.5px;color:#334155;line-height:1.7;margin-bottom:20px;">Manages inventory, assists members in the cooperative minimart, and maintains a clean, organized retail environment.</p>
+        <button type="button" onclick="openFeedbackModal()" style="background:var(--blue);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:0.04em;text-transform:uppercase;padding:11px 22px;border-radius:3px;border:1px solid var(--blue);cursor:pointer;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='#fff';this.style.color='var(--blue)'" onmouseout="this.style.background='var(--blue)';this.style.color='#fff'">Apply Now</button>
+      </div>
+    </div>
+    <div style="margin-top:32px;background:var(--blue-dark);border-radius:6px;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-left:4px solid var(--gold);">
+      <div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;color:#fff;margin-bottom:6px;">Don't see a role that fits your qualifications?</div>
+        <p style="font-size:13.5px;color:rgba(255,255,255,0.75);">Submit your resume for consideration in future hiring.</p>
+      </div>
+      <button type="button" onclick="openFeedbackModal()" style="background:transparent;color:var(--gold);font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;padding:13px 26px;border-radius:3px;border:1.5px solid var(--gold);cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--blue-dark)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Submit Resume</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">OLPMPC</div>
+      <div class="footer-brand-sub">Our Lady of Peace Multipurpose Cooperative</div>
+      <p class="footer-desc">Named after the National Shrine Patroness — Our Lady of Peace and Good Voyage. Serving the Antipolo community for 38 years with dedication and faith.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About OLPMPC</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#membership">Membership</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#careers">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Savings Deposit</a></li>
+        <li><a href="#services">Credit / Loans</a></li>
+        <li><a href="#services">Cash Loan</a></li>
+        <li><a href="#services">Vehicle Loan</a></li>
+        <li><a href="#services">Memorial Loan</a></li>
+        <li><a href="#services">Lot Loan</a></li>
+        <li><a href="#services">Minimart</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Corner+Sto.+Ni%C3%B1o+and+Carigma+Streets%2C+Brgy.+San+Jose%2C+Antipolo+City%2C+Rizal" target="_blank">📍 Corner Sto. Niño & Carigma Sts., Brgy. San Jose, Antipolo City, Rizal</a></li>
+        <li><a href="tel:+63212345678">📞 (02) 123-4567</a></li>
+        <li><a href="mailto:info@olpmpc.coop">✉️ info@olpmpc.coop</a></li>
+        <li><a href="https://www.olpmpc.coop" target="_blank">🌐 www.olpmpc.coop</a></li>
+        <li style="list-style:none;padding-top:8px;">
+          <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Follow Us</div>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/OLPMPCantipolo" target="_blank" class="footer-social-btn fb" title="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@olpmpc" target="_blank" class="footer-social-btn yt" title="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/olpmpc" target="_blank" class="footer-social-btn ig" title="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-map-wrap">
+    <iframe
+      src="https://maps.google.com/maps?q=Corner%20Sto.%20Ni%C3%B1o%20and%20Carigma%20Streets%2C%20Brgy.%20San%20Jose%2C%20Antipolo%20City%2C%20Rizal&t=k&z=18&output=embed"
+      width="100%" height="320" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="OLPMPC Office Location Map">
+    </iframe>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 <strong>OLPMPC</strong> — Our Lady of Peace Multipurpose Cooperative. All rights reserved.</span>
+    <span>Serving Antipolo City since <strong>1987</strong></span>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+function toggleMobileMenu() {
+  const panel = document.getElementById('mobileMenuPanel');
+  const overlay = document.getElementById('mobileOverlay');
+  const btn = document.getElementById('navHamburger');
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  overlay.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenuPanel').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+// Close dropdown immediately after tapping a link inside it
+// (prevents the menu from staying open over the page content on touch devices)
+document.querySelectorAll('.has-dropdown .dropdown a').forEach(link => {
+  link.addEventListener('click', () => {
+    const li = link.closest('.has-dropdown');
+    if (!li) return;
+    li.classList.add('force-close');
+    setTimeout(() => li.classList.remove('force-close'), 800);
+  });
+});
+// Active nav on scroll — only top-level links, not dropdown items
+const sections = document.querySelectorAll('section[id], footer[id]');
+const navLinks = document.querySelectorAll('.nav-links > li > a');
+const olpmpcSubSections = ['about','board','committees','management','privacy','orgchart'];
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    const href = a.getAttribute('href');
+    // Mark OLPMPC parent active when in any sub-section
+    if (href === '#about' && olpmpcSubSections.includes(current)) {
+      a.classList.add('active');
+    } else if (href === '#' + current) {
+      a.classList.add('active');
+    } else if (current === '' && href === '#top') {
+      a.classList.add('active');
+    }
+  });
+});
+// Membership Online / Walk-in tabs
+function switchMembershipTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tab);
+  });
+  document.querySelectorAll('.tab-panel').forEach(panel => {
+    panel.style.display = (panel.dataset.panel === tab) ? '' : 'none';
+  });
+}
+// Feedback modal
+function openFeedbackModal() {
+  document.getElementById('feedbackModalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeFeedbackModal() {
+  document.getElementById('feedbackModalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeFeedbackModal();
+});
+</script>
+</body>
+</html>
